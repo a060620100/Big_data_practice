@@ -10,3 +10,4 @@ pymysql
 pymongo
 yfinance
 pandas
+python-dotenv
