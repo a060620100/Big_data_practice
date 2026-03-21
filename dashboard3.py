@@ -6,11 +6,21 @@ import os
 from dotenv import load_dotenv
 import requests
 
+load_dotenv()
+
+# 讀取 API URL 與資料庫設定
+API_BASE = os.getenv("API_URL")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
+
 # --- 1. 設定與連線 ---
 st.set_page_config(page_title="經濟健康度儀表板", layout="wide")
 Base = declarative_base()
-API_BASE = "http://8.229.26.9:8000"  # FastAPI 位址
-DATABASE_URL = "mysql+pymysql://Lin_Po_Wei:1qaz2WSX@8.229.26.9:3306/mydb"
+API_BASE = f"API_BASE"  # FastAPI 位址
+DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST:{DB_PORT}/{DB_NAME}"
 engine = create_engine(
     DATABASE_URL,
     pool_size=5,
@@ -33,14 +43,14 @@ except Exception as e:
 
 # --- 2. 定義資料獲取函式 ---
 
-# (保留) 從 API 獲取即時個股價格
-@st.cache_data(ttl=300)
-def fetch_stock_price(symbol):
-    try:
-        res = requests.get(f"{API_BASE}/stock_price", params={"symbol": symbol}, timeout=5)
-        return res.json() if res.status_code == 200 else None
-    except:
-        return None
+# # (保留) 從 API 獲取即時個股價格
+# @st.cache_data(ttl=300)
+# def fetch_stock_price(symbol):
+#     try:
+#         res = requests.get(f"{API_BASE}/stock_price", params={"symbol": symbol}, timeout=5)
+#         return res.json() if res.status_code == 200 else None
+#     except:
+#         return None
 
 class EconomicScore(Base):
     __tablename__ = "economic_score"
