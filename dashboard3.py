@@ -9,18 +9,17 @@ import requests
 load_dotenv()
 
 # 讀取 API URL 與資料庫設定
-API_BASE = os.getenv("API_URL")
+API_BASE = "http://8.229.26.9:8000"
 DB_USER = os.getenv("DB_USER")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
 
 # --- 1. 設定與連線 ---
 st.set_page_config(page_title="經濟健康度儀表板", layout="wide")
 Base = declarative_base()
-API_BASE = f"API_BASE"  # FastAPI 位址
-DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST:{DB_PORT}/{DB_NAME}"
+API_BASE = f"{API_BASE}"  # FastAPI 位址
+DATABASE_URL = f"mysql+pymysql://Lin_Po_Wei:{DB_PASSWORD}@8.229.26.9:3306/{DB_NAME}"
 engine = create_engine(
     DATABASE_URL,
     pool_size=5,
