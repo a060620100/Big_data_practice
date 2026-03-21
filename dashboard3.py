@@ -19,7 +19,7 @@ DB_NAME = os.getenv("DB_NAME")
 st.set_page_config(page_title="經濟健康度儀表板", layout="wide")
 Base = declarative_base()
 API_BASE = f"{API_BASE}"  # FastAPI 位址
-DATABASE_URL = f"mysql+pymysql://Lin_Po_Wei:{DB_PASSWORD}@8.229.26.9:3306/{DB_NAME}"
+DATABASE_URL = f"mysql+pymysql://Lin_Po_Wei:rDAZFLHZmNGenr0a3Xzo@8.229.26.9:3306/mydb"
 engine = create_engine(
     DATABASE_URL,
     pool_size=5,
